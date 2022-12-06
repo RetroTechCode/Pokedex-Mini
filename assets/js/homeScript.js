@@ -1,19 +1,47 @@
-// sessionStorage will need to be used to store the user input across pages
-// When the user searches, store that search as an item in BOTH sessionStorage and localStorage
-// Use the sessionStorage to fill the API params on the results page
-// Use the localStorage to add to the search history on the home page
-// When the user selects something from the search history, add that to sessionStorage and use it in the API params,
-// and push it back into the front of the localStorage to update the search history.
-
+// Global variables
 var searchBtn = document.getElementById("searchBtn");
 var userInput = document.getElementById("userInput");
 
-function resultsPage () {
-    if (userInput.value !== '') {
-        window.location.href = 'results.html';
+// Global variables
+var searchArray = loadSearchHistory();
+
+// Add the user's latest search to localStorage
+function saveSearch() {
+    if (!searchArray) {
+        searchArray = [userInput.value]
     } else {
-        console.log("Doesn't Work");
+        searchArray.unshift(userInput.value)
     }
+
+    if (searchArray.length > 5) {
+        var removeExtra = searchArray.pop();
+    }
+
+    localStorage.setItem("searches", JSON.stringify(searchArray));
 }
 
+function loadSearchHistory() {
+    var searchArray = JSON.parse(localStorage.getItem("searches"));
+
+    return searchArray;
+}
+
+
+// Function to move the user to the results page
+function resultsPage () {
+    saveSearch();
+    console.log("userInput.value: " + userInput.value);
+    console.log("searchArray: " + searchArray);
+
+    // if (userInput.value !== '') {
+    //     window.location.href = 'results.html';
+    // } else {
+    //     console.log("Doesn't Work");
+    // }
+}
+
+// Event listeners
 searchBtn.addEventListener ("click", resultsPage);
+
+// Run these functions on page load
+loadSearchHistory();
