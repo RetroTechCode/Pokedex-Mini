@@ -5,6 +5,19 @@ var userInput = document.getElementById("userInput");
 // Global variables
 var searchArray = loadSearchHistory();
 
+function pokeApi() {
+    fetch("https://pokeapi.co/api/v2/pokemon/" + userInput.value)
+        .then((response) => response.json())
+        .then(function (data) {
+            console.log(data);
+            saveSearch();
+            resultsPage();
+        })
+        .catch((err) => {
+            console.log("Error! Please double check your spelling or dex number.")
+        })
+};
+
 // Add the user's latest search to localStorage
 function saveSearch() {
     if (!searchArray) {
@@ -24,24 +37,17 @@ function loadSearchHistory() {
     var searchArray = JSON.parse(localStorage.getItem("searches"));
 
     return searchArray;
-}
+};
 
 
 // Function to move the user to the results page
-function resultsPage () {
-    saveSearch();
-    console.log("userInput.value: " + userInput.value);
-    console.log("searchArray: " + searchArray);
+function resultsPage() {
+    window.location.href = 'results.html';
+};
 
-    // if (userInput.value !== '') {
-    //     window.location.href = 'results.html';
-    // } else {
-    //     console.log("Doesn't Work");
-    // }
-}
 
 // Event listeners
-searchBtn.addEventListener ("click", resultsPage);
+searchBtn.addEventListener("click", pokeApi);
 
 // Run these functions on page load
 loadSearchHistory();
