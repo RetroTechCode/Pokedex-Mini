@@ -21,3 +21,11 @@ function poGoCheck () {
 }
 
 poGoCheck();
+
+var backBtn = document.getElementById("backBtn");
+
+function homePage() {
+    window.location.href = 'home.HTML';
+}
+
+backBtn.addEventListener("click", homePage);
