@@ -2,6 +2,8 @@
 var dexNum = "488";
 var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + dexNum;
 
+// Global page elements
+var backBtn = document.getElementById("backBtn");
 
 function pokeApi () {
     fetch(pokeApiUrl)
@@ -47,6 +49,13 @@ function poGoCheck () {
 // TODO: Learned moves display function
 
 // TODO: Type matchup display function
+
+function homePage() {
+    window.location.href = 'home.HTML';
+}
+
+// Event listeners
+backBtn.addEventListener("click", homePage);
 
 // Functions to run on page load
 poGoCheck();

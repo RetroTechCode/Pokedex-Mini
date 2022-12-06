@@ -4,3 +4,16 @@
 // Use the localStorage to add to the search history on the home page
 // When the user selects something from the search history, add that to sessionStorage and use it in the API params,
 // and push it back into the front of the localStorage to update the search history.
+
+var searchBtn = document.getElementById("searchBtn");
+var userInput = document.getElementById("userInput");
+
+function resultsPage () {
+    if (userInput.value !== '') {
+        window.location.href = 'results.html';
+    } else {
+        console.log("Doesn't Work");
+    }
+}
+
+searchBtn.addEventListener ("click", resultsPage);
