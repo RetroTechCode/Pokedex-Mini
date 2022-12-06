@@ -1,5 +1,15 @@
 // Global variables
 var dexNum = "488";
+var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + dexNum;
+
+
+function pokeApi () {
+    fetch(pokeApiUrl)
+    .then((response) => response.json())
+    .then(function (data) {
+        console.log(data);
+    })
+};
 
 // TODO: Dex number display function
 // TODO: Pokemon name display function
@@ -11,7 +21,7 @@ function poGoCheck () {
 
     fetch("https://pogoapi.net/api/v1/released_pokemon.json")
     .then((response) => response.json())
-    .then (function (data) {
+    .then(function (data) {
         // Change the data object to an array containing only the keys, or dex number in this case.
         var dataArray = Object.keys(data);
 
@@ -40,3 +50,4 @@ function poGoCheck () {
 
 // Functions to run on page load
 poGoCheck();
+pokeApi();
