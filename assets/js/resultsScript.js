@@ -1,23 +1,42 @@
+// Global variables
 var dexNum = "488";
 
-// Pulling in PoGoAPI and then checking to see if the dexNum of the Pokemon the user searched for exists
-// in the array containing the dex numbers of Pokemon that are in Pokemon Go.
+// TODO: Dex number display function
+// TODO: Pokemon name display function
+// TODO: Pokemon type display function
+
+// Function to check if the given Pokemon is in Pokemon Go.
 function poGoCheck () {
     var pkmnGoEl = document.getElementById("pkmnGo");
 
     fetch("https://pogoapi.net/api/v1/released_pokemon.json")
     .then((response) => response.json())
     .then (function (data) {
+        // Change the data object to an array containing only the keys, or dex number in this case.
         var dataArray = Object.keys(data);
 
+        // Checking if the dex number of the given Pokemon is included in the array of Pokemon in Pokemon Go.
         if (dataArray.includes(dexNum)) {
-            console.log("✅ This Pokemon is in Pokemon Go!")
             pkmnGoEl.textContent = "✅"
         } else {
-            console.log("❌ This Pokemon is NOT in Pokemon Go!")
             pkmnGoEl.textContent = "❌"
         }
     })
-}
+};
 
+// TODO: Previous Evo check and display function
+// TODO: Next Evo check and display function
+
+// TODO: Sprite display function
+// TODO: Shiny sprite display function
+
+//TODO: Dex entry description display function
+
+// TODO: Stats display function
+
+// TODO: Learned moves display function
+
+// TODO: Type matchup display function
+
+// Functions to run on page load
 poGoCheck();
