@@ -1,6 +1,7 @@
 // Global variables
-var dexNum = "488";
-var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + dexNum;
+var searchArray = loadSearchHistory();
+var latestSearch = searchArray[0];
+var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + latestSearch;
 
 // Global page elements
 var backBtn = document.getElementById("backBtn");
@@ -10,15 +11,33 @@ function pokeApi () {
     .then((response) => response.json())
     .then(function (data) {
         console.log(data);
+        getDexNum(data);
+        getPokeName(data);
     })
 };
 
 // TODO: Dex number display function
+function getDexNum(data) {
+    var dexNumEl = document.getElementById("dexNum");
+    var dexNum = data.id;
+
+    dexNumEl.textContent = "#" + dexNum;
+    poGoCheck(dexNum);
+}
+
 // TODO: Pokemon name display function
+function getPokeName(data) {
+    var pokeNameEl = document.getElementById("pokeName");
+    var pokeName = data.name;
+
+    pokeNameEl.textContent = pokeName;
+}
+
+
 // TODO: Pokemon type display function
 
 // Function to check if the given Pokemon is in Pokemon Go.
-function poGoCheck () {
+function poGoCheck (dexNum) {
     var pkmnGoEl = document.getElementById("pkmnGo");
 
     fetch("https://pogoapi.net/api/v1/released_pokemon.json")
@@ -28,10 +47,11 @@ function poGoCheck () {
         var dataArray = Object.keys(data);
 
         // Checking if the dex number of the given Pokemon is included in the array of Pokemon in Pokemon Go.
-        if (dataArray.includes(dexNum)) {
+        if (dataArray.includes(dexNum.toString())) {
             pkmnGoEl.textContent = "✅"
         } else {
             pkmnGoEl.textContent = "❌"
+            console.log(dexNum);
         }
     })
 };
@@ -50,6 +70,13 @@ function poGoCheck () {
 
 // TODO: Type matchup display function
 
+// Load the user's previous searches and return them as an array.
+function loadSearchHistory() {
+    var searchArray = JSON.parse(localStorage.getItem("searches"));
+
+    return searchArray;
+};
+
 function homePage() {
     window.location.href = 'home.HTML';
 }
@@ -58,5 +85,7 @@ function homePage() {
 backBtn.addEventListener("click", homePage);
 
 // Functions to run on page load
-poGoCheck();
 pokeApi();
+loadSearchHistory();
+
+console.log(searchArray);
