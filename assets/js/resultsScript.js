@@ -1,6 +1,7 @@
 // Global variables
-var dexNum = "488";
-var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + dexNum;
+var searchArray = loadSearchHistory();
+var latestSearch = searchArray[0];
+var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + latestSearch;
 
 // Global page elements
 var backBtn = document.getElementById("backBtn");
@@ -28,7 +29,7 @@ function poGoCheck () {
         var dataArray = Object.keys(data);
 
         // Checking if the dex number of the given Pokemon is included in the array of Pokemon in Pokemon Go.
-        if (dataArray.includes(dexNum)) {
+        if (dataArray.includes(latestSearch)) {
             pkmnGoEl.textContent = "✅"
         } else {
             pkmnGoEl.textContent = "❌"
@@ -50,6 +51,13 @@ function poGoCheck () {
 
 // TODO: Type matchup display function
 
+// Load the user's previous searches and return them as an array.
+function loadSearchHistory() {
+    var searchArray = JSON.parse(localStorage.getItem("searches"));
+
+    return searchArray;
+};
+
 function homePage() {
     window.location.href = 'home.HTML';
 }
@@ -60,3 +68,6 @@ backBtn.addEventListener("click", homePage);
 // Functions to run on page load
 poGoCheck();
 pokeApi();
+loadSearchHistory();
+
+console.log(searchArray);
