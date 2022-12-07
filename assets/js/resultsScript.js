@@ -11,11 +11,28 @@ function pokeApi () {
     .then((response) => response.json())
     .then(function (data) {
         console.log(data);
+        getDexNum(data);
+        getPokeName(data);
     })
 };
 
 // TODO: Dex number display function
+function getDexNum(data) {
+    var dexNumEl = document.getElementById("dexNum");
+    var dexNum = data.id;
+
+    dexNumEl.textContent = "#" + dexNum;
+}
+
 // TODO: Pokemon name display function
+function getPokeName(data) {
+    var pokeNameEl = document.getElementById("pokeName");
+    var pokeName = data.name;
+
+    pokeNameEl.textContent = pokeName;
+}
+
+
 // TODO: Pokemon type display function
 
 // Function to check if the given Pokemon is in Pokemon Go.
