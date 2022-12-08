@@ -27,7 +27,20 @@
     margin: 30px 0;
   }
 
-  img {
-    margin: 0 auto;
-    padding-left: 70px;
-  }
+.previouslySelected ul {
+    background-color: white;
+    border: 2px solid red;
+}
+
+#previouslySelected {
+    margin: 1px;
+}
+
+.mainbody {
+    margin: 0;
+}
+
+.hidden {
+    display: null;
+}
+
