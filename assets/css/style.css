@@ -45,20 +45,38 @@
     padding-left: 10px;
   }
 
-  @media screen and (max-width: 1024px) {
-    body {
-      padding-top: 15%;
-    }
-  }
+.previouslySelected ul {
+    background-color: white;
+    border: 2px solid red;
+}
 
-  @media screen and (max-width: 768px) {
-    body {
-      padding-top: 20%;
-    }
-  }
+#previouslySelected {
+    margin: 1px;
+}
 
-  @media screen and (max-width: 480px) {
-    body {
-      padding-top: 25%;
-    }
+.mainbody {
+    margin: 0;
+}
+
+.hidden {
+    display: null;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    padding-top: 15%;
   }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 20%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding-top: 25%;
+  }
+}
+
