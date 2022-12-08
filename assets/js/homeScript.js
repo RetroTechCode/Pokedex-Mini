@@ -3,7 +3,7 @@ var searchBtn = document.getElementById("searchBtn");
 var userInput = document.getElementById("userInput");
 var modalText = document.getElementById("modal-text")
 // Global variables
-var searchArray = loadSearchHistory();
+var latestSearch = loadSearchHistory();
 
 function pokeApi() {
     if (userInput.value.trim() === '') {
@@ -27,24 +27,26 @@ function pokeApi() {
 
 // Add the user's latest search to localStorage
 function saveSearch() {
-    if (!searchArray) {
-        searchArray = [userInput.value]
-    } else {
-        searchArray.unshift(userInput.value)
-    }
+        latestSearch = userInput.value;
 
-    if (searchArray.length > 5) {
-        var removeExtra = searchArray.pop();
-    }
-
-    localStorage.setItem("searches", JSON.stringify(searchArray));
+    localStorage.setItem("latestSearch", latestSearch);
 }
 
+// Call localStorage to display previous searches on the page
 function loadSearchHistory() {
-    var searchArray = JSON.parse(localStorage.getItem("searches"));
+    var latestSearch = localStorage.getItem(latestSearch);
 
-    return searchArray;
+    return latestSearch;
 };
+
+function displayHistory() {
+    for (var i = 0; i < 5; i++) {
+        console.log(i)
+        var spriteEl = document.getElementById("sprite" + (i+1));
+        var nameEl = document.getElementById("name" + (i+1));
+        var dexEl = document.getElementById("dex" + (i+1));
+        }
+}
 
 // Function for Modals
 function textError() {
@@ -69,3 +71,4 @@ searchBtn.addEventListener("click", pokeApi);
 
 // Run these functions on page load
 loadSearchHistory();
+displayHistory();
