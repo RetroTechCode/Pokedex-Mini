@@ -1,6 +1,5 @@
 // Global variables
-var searchArray = loadSearchHistory();
-var latestSearch = searchArray[0];
+var latestSearch = loadSearchHistory();
 var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + latestSearch;
 var pokeApiSpeciesUrl = "https://pokeapi.co/api/v2/pokemon-species/" + latestSearch;
 
@@ -117,9 +116,9 @@ function dexEntry(data) {
 
 // Load the user's previous searches and return them as an array.
 function loadSearchHistory() {
-    var searchArray = JSON.parse(localStorage.getItem("searches"));
+    var latestSearch = localStorage.getItem("latestSearch");
 
-    return searchArray;
+    return latestSearch;
 };
 
 function homePage() {
@@ -135,4 +134,4 @@ pokeApi();
 pokeApiSpecies();
 
 
-console.log(searchArray);
+console.log(latestSearch);
