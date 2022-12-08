@@ -104,10 +104,9 @@ function shinySprite(data) {
 function dexEntry(data) {
     var dexEntryEl = document.getElementById("dexEntry");
     var dexEntry = data.flavor_text_entries[6].flavor_text;
-    var dexEntry2 = dexEntry.replace("\n", "");
-    var dexEntry3 = dexEntry2.replace("\f", "");
+    var dexEntryFormat = dexEntry.replace("\n" && "\f", "");
 
-    dexEntryEl.textContent = dexEntry3;
+    dexEntryEl.textContent = dexEntryFormat;
 }
 
 // TODO: Stats display function
