@@ -15,6 +15,8 @@ function pokeApi() {
             getDexNum(data);
             getPokeName(data);
             pokeTypes(data);
+            regSprite(data);
+            shinySprite(data);
         })
 };
 
@@ -76,7 +78,16 @@ function poGoCheck(dexNum) {
 // TODO: Next Evo check and display function
 
 // TODO: Sprite display function
+function regSprite(data) {
+    var regSpriteEl = document.getElementById("regSprite");
+    regSpriteEl.setAttribute("src", data.sprites.front_default);
+}
+
 // TODO: Shiny sprite display function
+function shinySprite(data) {
+    var shinySpriteEl = document.getElementById("shinySprite");
+    shinySpriteEl.setAttribute("src", data.sprites.front_shiny);
+}
 
 //TODO: Dex entry description display function
 
