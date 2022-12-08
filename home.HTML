@@ -31,10 +31,17 @@
                 <input id="userInput" type="text" placeholder="Name or Dex #">
                 <button id="searchBtn">Search</button>
             </div>
+             <!--Trigger / Open the Modal-->
+             <div id="myModal" class="modal">
+                <div class="mdal-content">
+                    <span class="close">&times;</span>
+                    <p id="modal-text"></p>
+                </div>
+            </div>
             <ul id="dexmini-suggestions" style="visibility: hidden;"></ul>
         </section>
     </main>
-
+    
     <div class="history">
         <h1>Previously Selected Pokemon</h1>
         <div class="previouslySelected row">
