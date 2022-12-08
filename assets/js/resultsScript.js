@@ -2,6 +2,7 @@
 var searchArray = loadSearchHistory();
 var latestSearch = searchArray[0];
 var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + latestSearch;
+var pokeApiSpeciesUrl = "https://pokeapi.co/api/v2/pokemon-species/" + latestSearch;
 
 // Global page elements
 var backBtn = document.getElementById("backBtn");
@@ -19,6 +20,16 @@ function pokeApi() {
             shinySprite(data);
         })
 };
+
+// Call the PokeAPI Species data to be used in the rest of the page
+function pokeApiSpecies() {
+    fetch(pokeApiSpeciesUrl)
+    .then((response) => response.json())
+    .then(function (data) {
+        console.log(data);
+        dexEntry(data);
+    })
+}
 
 // TODO: Dex number display function
 function getDexNum(data) {
@@ -89,7 +100,15 @@ function shinySprite(data) {
     shinySpriteEl.setAttribute("src", data.sprites.front_shiny);
 }
 
-//TODO: Dex entry description display function
+// TODO: Dex entry description display function
+function dexEntry(data) {
+    var dexEntryEl = document.getElementById("dexEntry");
+    var dexEntry = data.flavor_text_entries[6].flavor_text;
+    var dexEntry2 = dexEntry.replace("\n", "");
+    var dexEntry3 = dexEntry2.replace("\f", "");
+
+    dexEntryEl.textContent = dexEntry3;
+}
 
 // TODO: Stats display function
 
@@ -112,7 +131,9 @@ function homePage() {
 backBtn.addEventListener("click", homePage);
 
 // Functions to run on page load
-pokeApi();
 loadSearchHistory();
+pokeApi();
+pokeApiSpecies();
+
 
 console.log(searchArray);
