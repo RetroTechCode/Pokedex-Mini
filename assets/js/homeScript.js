@@ -40,11 +40,24 @@ function saveSearch() {
     localStorage.setItem("searches", JSON.stringify(searchArray));
 }
 
+// Call localStorage to display previous searches on the page
 function loadSearchHistory() {
     var searchArray = JSON.parse(localStorage.getItem("searches"));
 
     return searchArray;
 };
+
+function displayHistory() {
+    for (var i = 0; i < searchArray.length; i++) {
+        console.log(i)
+        var spriteEl = document.getElementById("sprite" + (i+1));
+        var nameEl = document.getElementById("name" + (i+1));
+        var dexEl = document.getElementById("dex" + (i+1));
+        }
+}
+
+
+
 
 // Function for Modals
 function textError() {
@@ -69,3 +82,4 @@ searchBtn.addEventListener("click", pokeApi);
 
 // Run these functions on page load
 loadSearchHistory();
+displayHistory();
