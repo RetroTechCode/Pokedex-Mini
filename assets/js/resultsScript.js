@@ -12,6 +12,7 @@ function pokeApi() {
         .then((response) => response.json())
         .then(function (data) {
             console.log(data);
+            savePokeInfo(data);
             getDexNum(data);
             getPokeName(data);
             pokeTypes(data);
@@ -114,8 +115,37 @@ function dexEntry(data) {
 
 // TODO: Type matchup display function
 
+// Save the searched Pokemon's info to localStorage to be recalled on home page search history
+function savePokeInfo(data) {
+    var pokeSprite = (data.sprites.front_default);
+    var pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    var dexNum = data.id;
+
+    if (!spriteHistory) {
+        var spriteHistory = [pokeSprite];
+    } else {
+        spriteHistory.unshift(pokeSprite);
+    }
+
+    if (!pokeNameHistory) {
+        var pokeNameHistory = [pokeName];
+    } else {
+        pokeNameHistory.unshift(pokeName);
+    }
+
+    if (!dexNumHistory) {
+        var dexNumHistory = [dexNum];
+    } else {
+        dexNumHistory.unshift(dexNum);
+    }
+
+    localStorage.setItem("spriteHistory", JSON.stringify(spriteHistory));
+    localStorage.setItem("pokeNameHistory", JSON.stringify(pokeNameHistory));
+    localStorage.setItem("dexNumHistory", JSON.stringify(dexNumHistory));
+}
+
 // Load the user's previous searches and return them as an array.
-function loadSearchHistory() {
+function loadCurrentPoke() {
     var latestSearch = localStorage.getItem("latestSearch");
 
     return latestSearch;
@@ -129,7 +159,7 @@ function homePage() {
 backBtn.addEventListener("click", homePage);
 
 // Functions to run on page load
-loadSearchHistory();
+loadCurrentPoke();
 pokeApi();
 pokeApiSpecies();
 
