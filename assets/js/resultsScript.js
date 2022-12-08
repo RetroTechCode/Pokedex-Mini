@@ -6,14 +6,16 @@ var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + latestSearch;
 // Global page elements
 var backBtn = document.getElementById("backBtn");
 
-function pokeApi () {
+// Call the PokeAPI to be used in the rest of the page
+function pokeApi() {
     fetch(pokeApiUrl)
-    .then((response) => response.json())
-    .then(function (data) {
-        console.log(data);
-        getDexNum(data);
-        getPokeName(data);
-    })
+        .then((response) => response.json())
+        .then(function (data) {
+            console.log(data);
+            getDexNum(data);
+            getPokeName(data);
+            pokeTypes(data);
+        })
 };
 
 // TODO: Dex number display function
@@ -28,32 +30,46 @@ function getDexNum(data) {
 // TODO: Pokemon name display function
 function getPokeName(data) {
     var pokeNameEl = document.getElementById("pokeName");
-    var pokeName = data.name;
+    var pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
 
     pokeNameEl.textContent = pokeName;
 }
 
 
-// TODO: Pokemon type display function
+// Pokemon type display function
+function pokeTypes(data) {
+    var pokeTypeEl = document.getElementById("pokeType");
+    var pokeType1 = data.types[0].type.name;
+    var pokeType1Text = pokeType1.charAt(0).toUpperCase() + pokeType1.slice(1);
+
+    // Test if the Pokemon has a secondary type
+    if (data.types.length > 1) {
+        var pokeType2 = data.types[1].type.name;
+        var pokeType2Text = pokeType2.charAt(0).toUpperCase() + pokeType2.slice(1);
+        pokeTypeEl.textContent = pokeType1Text + " " + pokeType2Text;
+    } else {
+        pokeTypeEl.textContent = pokeType1Text;
+    }
+}
 
 // Function to check if the given Pokemon is in Pokemon Go.
-function poGoCheck (dexNum) {
+function poGoCheck(dexNum) {
     var pkmnGoEl = document.getElementById("pkmnGo");
 
     fetch("https://pogoapi.net/api/v1/released_pokemon.json")
-    .then((response) => response.json())
-    .then(function (data) {
-        // Change the data object to an array containing only the keys, or dex number in this case.
-        var dataArray = Object.keys(data);
+        .then((response) => response.json())
+        .then(function (data) {
+            // Change the data object to an array containing only the keys, or dex number in this case.
+            var dataArray = Object.keys(data);
 
-        // Checking if the dex number of the given Pokemon is included in the array of Pokemon in Pokemon Go.
-        if (dataArray.includes(dexNum.toString())) {
-            pkmnGoEl.textContent = "✅"
-        } else {
-            pkmnGoEl.textContent = "❌"
-            console.log(dexNum);
-        }
-    })
+            // Checking if the dex number of the given Pokemon is included in the array of Pokemon in Pokemon Go.
+            if (dataArray.includes(dexNum.toString())) {
+                pkmnGoEl.textContent = "✅"
+            } else {
+                pkmnGoEl.textContent = "❌"
+                console.log(dexNum);
+            }
+        })
 };
 
 // TODO: Previous Evo check and display function
