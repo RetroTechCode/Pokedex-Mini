@@ -1,5 +1,5 @@
 // Global variables
-var latestSearch = loadSearchHistory();
+var latestSearch = loadCurrentPoke();
 var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + latestSearch;
 var pokeApiSpeciesUrl = "https://pokeapi.co/api/v2/pokemon-species/" + latestSearch;
 
@@ -12,7 +12,7 @@ function pokeApi() {
         .then((response) => response.json())
         .then(function (data) {
             console.log(data);
-            savePokeInfo(data);
+            // savePokeInfo(data);
             getDexNum(data);
             getPokeName(data);
             pokeTypes(data);
@@ -24,11 +24,11 @@ function pokeApi() {
 // Call the PokeAPI Species data to be used in the rest of the page
 function pokeApiSpecies() {
     fetch(pokeApiSpeciesUrl)
-    .then((response) => response.json())
-    .then(function (data) {
-        console.log(data);
-        dexEntry(data);
-    })
+        .then((response) => response.json())
+        .then(function (data) {
+            console.log(data);
+            dexEntry(data);
+        })
 }
 
 // TODO: Dex number display function
@@ -103,7 +103,7 @@ function shinySprite(data) {
 // TODO: Dex entry description display function
 function dexEntry(data) {
     var dexEntryEl = document.getElementById("dexEntry");
-    var dexEntry = data.flavor_text_entries[6].flavor_text;
+    var dexEntry = data.flavor_text_entries[0].flavor_text;
     var dexEntryFormat = dexEntry.replace("\n" && "\f", "");
 
     dexEntryEl.textContent = dexEntryFormat;
@@ -116,33 +116,44 @@ function dexEntry(data) {
 // TODO: Type matchup display function
 
 // Save the searched Pokemon's info to localStorage to be recalled on home page search history
-function savePokeInfo(data) {
-    var pokeSprite = (data.sprites.front_default);
-    var pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
-    var dexNum = data.id;
+// function savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory) {
+//     var pokeSprite = (data.sprites.front_default);
+//     var pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+//     var dexNum = data.id;
 
-    if (!spriteHistory) {
-        var spriteHistory = [pokeSprite];
-    } else {
-        spriteHistory.unshift(pokeSprite);
-    }
+//     console.log(typeof(spriteHistory));
+//     if (spriteHistory = undefined) {
+//         spriteHistory = [pokeSprite];
+//     } else {
+//         spriteHistory.unshift(pokeSprite);
+//     }
 
-    if (!pokeNameHistory) {
-        var pokeNameHistory = [pokeName];
-    } else {
-        pokeNameHistory.unshift(pokeName);
-    }
+//     if (pokeNameHistory = undefined) {
+//         pokeNameHistory = [pokeName];
+//     } else {
+//         pokeNameHistory.unshift(pokeName);
+//     }
 
-    if (!dexNumHistory) {
-        var dexNumHistory = [dexNum];
-    } else {
-        dexNumHistory.unshift(dexNum);
-    }
+//     if (dexNumHistory = undefined) {
+//         dexNumHistory = [dexNum];
+//     } else {
+//         dexNumHistory.unshift(dexNum);
+//     }
 
-    localStorage.setItem("spriteHistory", JSON.stringify(spriteHistory));
-    localStorage.setItem("pokeNameHistory", JSON.stringify(pokeNameHistory));
-    localStorage.setItem("dexNumHistory", JSON.stringify(dexNumHistory));
-}
+//     localStorage.setItem("spriteHistory", JSON.stringify(spriteHistory));
+//     localStorage.setItem("pokeNameHistory", JSON.stringify(pokeNameHistory));
+//     localStorage.setItem("dexNumHistory", JSON.stringify(dexNumHistory));
+// }
+
+// function loadHistoryArrays(data) {
+//     var spriteHistory = JSON.parse(localStorage.getItem("spriteHistory"));
+//     var pokeNameHistory = JSON.parse(localStorage.getItem("pokeNameHistory"));
+//     var dexNumHistory = JSON.parse(localStorage.getItem("dexNumHistory"));
+
+//     console.log(spriteHistory, typeof (spriteHistory), pokeNameHistory, typeof (pokeNameHistory), dexNumHistory, typeof (dexNumHistory));
+
+//     savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory);
+// }
 
 // Load the user's previous searches and return them as an array.
 function loadCurrentPoke() {

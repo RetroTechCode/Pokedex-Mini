@@ -48,9 +48,6 @@ function displayHistory() {
         }
 }
 
-
-
-
 // Function for Modals
 function textError() {
     var modal = document.getElementById("myModal");
