@@ -11,7 +11,6 @@ function pokeApi() {
     fetch(pokeApiUrl)
         .then((response) => response.json())
         .then(function (data) {
-            console.log(data);
             loadHistoryArrays(data);
             getDexNum(data);
             getPokeName(data);
@@ -27,7 +26,6 @@ function pokeApiSpecies() {
     fetch(pokeApiSpeciesUrl)
         .then((response) => response.json())
         .then(function (data) {
-            console.log(data);
             dexEntry(data);
         })
 }
@@ -81,7 +79,6 @@ function poGoCheck(dexNum) {
                 pkmnGoEl.textContent = "✅"
             } else {
                 pkmnGoEl.textContent = "❌"
-                console.log(dexNum);
             }
         })
 };
@@ -140,7 +137,6 @@ function dexEntry(data) {
 function pokeStats(data) {
     for (var i = 0; i < data.stats.length; i++) {
         var statEl = document.getElementById("stat" + (i + 1));
-        console.log(statEl);
         var stat = data.stats[i].base_stat;
 
         statEl.textContent = stat;
