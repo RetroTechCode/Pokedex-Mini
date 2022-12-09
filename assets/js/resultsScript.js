@@ -1,6 +1,5 @@
 // Global variables
-var searchArray = loadSearchHistory();
-var latestSearch = searchArray[0];
+var latestSearch = loadCurrentPoke();
 var pokeApiUrl = "https://pokeapi.co/api/v2/pokemon/" + latestSearch;
 var pokeApiSpeciesUrl = "https://pokeapi.co/api/v2/pokemon-species/" + latestSearch;
 
@@ -12,23 +11,23 @@ function pokeApi() {
     fetch(pokeApiUrl)
         .then((response) => response.json())
         .then(function (data) {
-            console.log(data);
+            loadHistoryArrays(data);
             getDexNum(data);
             getPokeName(data);
             pokeTypes(data);
             regSprite(data);
             shinySprite(data);
+            pokeStats(data);
         })
 };
 
 // Call the PokeAPI Species data to be used in the rest of the page
 function pokeApiSpecies() {
     fetch(pokeApiSpeciesUrl)
-    .then((response) => response.json())
-    .then(function (data) {
-        console.log(data);
-        dexEntry(data);
-    })
+        .then((response) => response.json())
+        .then(function (data) {
+            dexEntry(data);
+        })
 }
 
 // TODO: Dex number display function
@@ -80,13 +79,9 @@ function poGoCheck(dexNum) {
                 pkmnGoEl.textContent = "✅"
             } else {
                 pkmnGoEl.textContent = "❌"
-                console.log(dexNum);
             }
         })
 };
-
-// TODO: Previous Evo check and display function
-// TODO: Next Evo check and display function
 
 // TODO: Sprite display function
 function regSprite(data) {
@@ -103,26 +98,114 @@ function shinySprite(data) {
 // TODO: Dex entry description display function
 function dexEntry(data) {
     var dexEntryEl = document.getElementById("dexEntry");
-    var dexEntry = data.flavor_text_entries[6].flavor_text;
-    var dexEntry2 = dexEntry.replace("\n", "");
-    var dexEntry3 = dexEntry2.replace("\f", "");
 
-    dexEntryEl.textContent = dexEntry3;
+    // Making sure to display the ENGLISH Pokedex entry given the dex number.
+    if (data.id >= 1 && data.id <= 493 || data.id >= 899) {
+        var dexEntry = data.flavor_text_entries[0].flavor_text;
+        var dexEntryFormat = dexEntry.replace("\n" && "\f", "");
+
+        dexEntryEl.textContent = dexEntryFormat;
+    } else if (data.id >= 494 && data.id <= 649) {
+        var dexEntry = data.flavor_text_entries[1].flavor_text;
+        var dexEntryFormat = dexEntry.replace("\n" && "\f", "");
+
+        dexEntryEl.textContent = dexEntryFormat;
+    } else if (data.id >= 650 && data.id <= 721) {
+        var dexEntry = data.flavor_text_entries[6].flavor_text;
+        var dexEntryFormat = dexEntry.replace("\n" && "\f", "");
+
+        dexEntryEl.textContent = dexEntryFormat;
+    } else if (data.id >= 722 && data.id <= 748 || data.id >= 751 && data.id <= 809) {
+        var dexEntry = data.flavor_text_entries[7].flavor_text;
+        var dexEntryFormat = dexEntry.replace("\n" && "\f", "");
+
+        dexEntryEl.textContent = dexEntryFormat;
+    } else if (data.id >= 749 && data.id <= 750) {
+        var dexEntry = data.flavor_text_entries[8].flavor_text;
+        var dexEntryFormat = dexEntry.replace("\n" && "\f", "");
+
+        dexEntryEl.textContent = dexEntryFormat;
+    } else if (data.id >= 810 && data.id <= 898) {
+        var dexEntry = data.flavor_text_entries[17].flavor_text;
+        var dexEntryFormat = dexEntry.replace("\n" && "\f", "");
+
+        dexEntryEl.textContent = dexEntryFormat;
+    }
 }
 
 // TODO: Stats display function
+function pokeStats(data) {
+    for (var i = 0; i < data.stats.length; i++) {
+        var statEl = document.getElementById("stat" + (i + 1));
+        var stat = data.stats[i].base_stat;
 
-// TODO: Learned moves display function
+        statEl.textContent = stat;
+    }
+}
 
-// TODO: Type matchup display function
+// Save the searched Pokemon's info to localStorage to be recalled on home page search history
+function savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory) {
+
+    // Set variables to contain the current Pokemon's information to add to search history
+    var pokeSprite = (data.sprites.front_default);
+    var pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    var dexNum = data.id;
+
+    // Checks for if the target array is empty. If so, create one with the new item. If not, add the new item.
+    if (!spriteHistory) {
+        spriteHistory = [pokeSprite];
+    } else {
+        spriteHistory.unshift(pokeSprite);
+    }
+
+    // Checks for if the history of the target criteria is more than 5 items long. If so, remove the last item to prevent it from going over 5.
+    if (spriteHistory.length > 5) {
+        spriteHistory.pop();
+    }
+
+    if (!pokeNameHistory) {
+        pokeNameHistory = [pokeName];
+    } else {
+        pokeNameHistory.unshift(pokeName);
+    }
+
+    if (pokeNameHistory.length > 5) {
+        pokeNameHistory.pop();
+    }
+
+    if (!dexNumHistory) {
+        dexNumHistory = [dexNum];
+    } else {
+        dexNumHistory.unshift(dexNum);
+    }
+
+    if (dexNumHistory.length > 5) {
+        dexNumHistory.pop();
+    }
+
+    // Set localStorage to contain the arrays with the information we want to display on the home page for the past 5 searches.
+    localStorage.setItem("spriteHistory", JSON.stringify(spriteHistory));
+    localStorage.setItem("pokeNameHistory", JSON.stringify(pokeNameHistory));
+    localStorage.setItem("dexNumHistory", JSON.stringify(dexNumHistory));
+}
+
+// Function to load the localStorage so that we can modify it in the savePokeInfo function.
+function loadHistoryArrays(data) {
+    var spriteHistory = JSON.parse(localStorage.getItem("spriteHistory"));
+    var pokeNameHistory = JSON.parse(localStorage.getItem("pokeNameHistory"));
+    var dexNumHistory = JSON.parse(localStorage.getItem("dexNumHistory"));
+
+    savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory);
+}
 
 // Load the user's previous searches and return them as an array.
-function loadSearchHistory() {
-    var searchArray = JSON.parse(localStorage.getItem("searches"));
+function loadCurrentPoke() {
+    var latestSearch = localStorage.getItem("latestSearch");
 
-    return searchArray;
+    return latestSearch;
 };
 
+// Function for the user to return to the home page.
 function homePage() {
     window.location.href = 'home.HTML';
 }
@@ -130,10 +213,7 @@ function homePage() {
 // Event listeners
 backBtn.addEventListener("click", homePage);
 
-// Functions to run on page load
-loadSearchHistory();
+// Functions to run on page load.
+loadCurrentPoke();
 pokeApi();
 pokeApiSpecies();
-
-
-console.log(searchArray);
