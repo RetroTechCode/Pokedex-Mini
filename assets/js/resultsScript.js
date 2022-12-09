@@ -18,6 +18,7 @@ function pokeApi() {
             pokeTypes(data);
             regSprite(data);
             shinySprite(data);
+            pokeStats(data);
         })
 };
 
@@ -110,6 +111,15 @@ function dexEntry(data) {
 }
 
 // TODO: Stats display function
+function pokeStats(data) {
+    for (var i = 0; i < data.stats.length; i++) {
+        var statEl = document.getElementById("stat" + (i+1));
+        console.log(statEl);
+        var stat = data.stats[i].base_stat;
+
+        statEl.textContent = stat;
+    }
+}
 
 // TODO: Learned moves display function
 
