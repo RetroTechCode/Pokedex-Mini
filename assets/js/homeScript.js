@@ -3,7 +3,7 @@ var searchBtn = document.getElementById("searchBtn");
 var userInput = document.getElementById("userInput");
 var modalText = document.getElementById("modal-text");
 
-var latestSearch = loadSearchHistory();
+var latestSearch = saveSearch();
 
 userInput.value = userInput.value.toLowerCase();
 
@@ -27,7 +27,7 @@ function pokeApi() {
 
 // Add the user's latest search to localStorage
 function saveSearch() {
-        latestSearch = userInput.value;
+    latestSearch = userInput.value;
 
     localStorage.setItem("latestSearch", latestSearch);
 }
@@ -43,14 +43,16 @@ function loadSearchHistory() {
 
 function displayHistory(spriteHistory, pokeNameHistory, dexNumHistory) {
     for (var i = 0; i < 5; i++) {
-        var spriteEl = document.getElementById("sprite" + (i+1));
-        var nameEl = document.getElementById("name" + (i+1));
-        var dexEl = document.getElementById("dex" + (i+1));
+        if (spriteHistory[i]) {
+            var spriteEl = document.getElementById("sprite" + (i + 1));
+            var nameEl = document.getElementById("name" + (i + 1));
+            var dexEl = document.getElementById("dex" + (i + 1));
 
-        spriteEl.setAttribute("src", spriteHistory[i]);
-        nameEl.textContent = pokeNameHistory[i];
-        dexEl.textContent = "#" + dexNumHistory[i];
+            spriteEl.setAttribute("src", spriteHistory[i]);
+            nameEl.textContent = pokeNameHistory[i];
+            dexEl.textContent = "#" + dexNumHistory[i];
         }
+    }
 }
 
 // Function for Modals
@@ -76,4 +78,3 @@ searchBtn.addEventListener("click", pokeApi);
 
 // Run these functions on page load
 loadSearchHistory();
-displayHistory();

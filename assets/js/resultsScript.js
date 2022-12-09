@@ -207,7 +207,7 @@ function loadCurrentPoke() {
 
 // Function for the user to return to the home page.
 function homePage() {
-    window.location.href = 'home.HTML';
+    window.location.href = 'index.html';
 }
 
 // Event listeners
