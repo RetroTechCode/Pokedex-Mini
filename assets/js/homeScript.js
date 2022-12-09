@@ -34,17 +34,22 @@ function saveSearch() {
 
 // Call localStorage to display previous searches on the page
 function loadSearchHistory() {
-    var latestSearch = localStorage.getItem(latestSearch);
+    var spriteHistory = JSON.parse(localStorage.getItem("spriteHistory"));
+    var pokeNameHistory = JSON.parse(localStorage.getItem("pokeNameHistory"));
+    var dexNumHistory = JSON.parse(localStorage.getItem("dexNumHistory"));
 
-    return latestSearch;
+    displayHistory(spriteHistory, pokeNameHistory, dexNumHistory);
 };
 
-function displayHistory() {
+function displayHistory(spriteHistory, pokeNameHistory, dexNumHistory) {
     for (var i = 0; i < 5; i++) {
-        console.log(i)
         var spriteEl = document.getElementById("sprite" + (i+1));
         var nameEl = document.getElementById("name" + (i+1));
         var dexEl = document.getElementById("dex" + (i+1));
+
+        spriteEl.setAttribute("src", spriteHistory[i]);
+        nameEl.textContent = pokeNameHistory[i];
+        dexEl.textContent = dexNumHistory[i];
         }
 }
 
