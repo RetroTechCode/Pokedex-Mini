@@ -1,13 +1,14 @@
 // Global variables
 var searchBtn = document.getElementById("searchBtn");
 var userInput = document.getElementById("userInput");
-var modalText = document.getElementById("modal-text")
-// Global variables
-var searchArray = loadSearchHistory();
+var modalText = document.getElementById("modal-text");
+
+var latestSearch = loadSearchHistory();
+
+userInput.value = userInput.value.toLowerCase();
 
 function pokeApi() {
     if (userInput.value.trim() === '') {
-        modalText.textContent = "Error! Please type a Pokemon name or Dex Number!"
         textError();
     } else {
         fetch("https://pokeapi.co/api/v2/pokemon/" + userInput.value)
@@ -18,7 +19,6 @@ function pokeApi() {
                 resultsPage();
             })
             .catch((err) => {
-                modalText.textContent = "Please check Pokemon spelling or Dex Number!";
                 textError();
                 console.log("Error! Please double check your spelling or dex number.")
             })
@@ -27,24 +27,31 @@ function pokeApi() {
 
 // Add the user's latest search to localStorage
 function saveSearch() {
-    if (!searchArray) {
-        searchArray = [userInput.value]
-    } else {
-        searchArray.unshift(userInput.value)
-    }
+        latestSearch = userInput.value;
 
-    if (searchArray.length > 5) {
-        var removeExtra = searchArray.pop();
-    }
-
-    localStorage.setItem("searches", JSON.stringify(searchArray));
+    localStorage.setItem("latestSearch", latestSearch);
 }
 
+// Call localStorage to display previous searches on the page
 function loadSearchHistory() {
-    var searchArray = JSON.parse(localStorage.getItem("searches"));
+    var spriteHistory = JSON.parse(localStorage.getItem("spriteHistory"));
+    var pokeNameHistory = JSON.parse(localStorage.getItem("pokeNameHistory"));
+    var dexNumHistory = JSON.parse(localStorage.getItem("dexNumHistory"));
 
-    return searchArray;
+    displayHistory(spriteHistory, pokeNameHistory, dexNumHistory);
 };
+
+function displayHistory(spriteHistory, pokeNameHistory, dexNumHistory) {
+    for (var i = 0; i < 5; i++) {
+        var spriteEl = document.getElementById("sprite" + (i+1));
+        var nameEl = document.getElementById("name" + (i+1));
+        var dexEl = document.getElementById("dex" + (i+1));
+
+        spriteEl.setAttribute("src", spriteHistory[i]);
+        nameEl.textContent = pokeNameHistory[i];
+        dexEl.textContent = "#" + dexNumHistory[i];
+        }
+}
 
 // Function for Modals
 function textError() {
@@ -69,3 +76,4 @@ searchBtn.addEventListener("click", pokeApi);
 
 // Run these functions on page load
 loadSearchHistory();
+displayHistory();

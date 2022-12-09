@@ -23,51 +23,60 @@
     </header>
 
     <main>
-        <section class="page-section" id="search">
+        <section id="search">
             <div id="logo">
-                <img src="./assets/images/download.png">
+                <img class="dexImage" src="./assets/images/gen4.png">
             </div>
             <div class="search">
-                <input id="userInput" type="text" placeholder="Name or Dex #">
+                <input id="userInput" class="input" type="text" placeholder="Name or Dex #" oninput="this.value=this.value.toLowerCase()">
                 <button id="searchBtn">Search</button>
-                <!--Trigger / Open the Modal-->
-                    <div id="myModal" class="modal" class="hidden">
-                        <div class="mdal-content">
-                            <span class="close">&times;</span>
-                            <p id="modal-text"></p>
-                        </div>
-                    </div>
             </div>
-            </div>
+             <!--Trigger / Open the Modal-->
+             <div id="myModal" class="modal">
+                <div class="mdal-content">
+                    <span class="close">&times;</span>
+                    <p id="modal-text">Error! Please double check your spelling or dex number.</p>
+                </div>
             </div>
             <ul id="dexmini-suggestions" style="visibility: hidden;"></ul>
         </section>
     </main>
-
-    <section class="previous-pokemon-section" id="selected">
-        <h1>Previously Selected Pokemon</h1>
-        <div> place holder</div>
-        <option value="value 1" selected>option1</option>
-        <option value="value2" selected>option2</option>
-        <option value="value3" selected>option3</option>
-        <option value="value4" selected>option4</option>
-        <option value="value5" selected>option5</option>
-
-        <div class="flex-container">
-
-            <div id="content"></div>
-            <div class="dexmini-table-conatiner">
-                <div class="dexmini-table-2x">
-                    <h1 Table here></h1>
-                    <ul class="classic-list">
-                    </ul>
-                </div>
-            </div>
+    
+    <div class="history">
+        <h1>Previously Searched Pokemon</h1>
+        <div class="previouslySelected row">
+            <ul class="col" id="pokemon1">
+                <li id="name1"></li>
+                <img class="sprite" id="sprite1"></img>
+                <li id="dex1"></li>
+            </ul>
+            <ul class="col" id="pokemon2">
+                <li id="name2"></li>
+                <img class="sprite" id="sprite2"></img>
+                <li id="dex2"></li>
+            </ul>
+            <ul class="col" id="pokemon3">
+                <li id="name3"></li>
+                <img class="sprite" id="sprite3"></img>
+                <li id="dex3"></li>
+            </ul>
+            <ul class="col" id="pokemon4">
+                <li id="name4"></li>
+                <img class="sprite" id="sprite4"></img>
+                <li id="dex4"></li>
+            </ul>
+            <ul class="col" id="pokemon5">
+                <li id="name5"></li>
+                <img class="sprite" id="sprite5"></img>
+                <li id="dex5"></li>
+            </ul>
         </div>
-    </section>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/homeScript.js"></script>
 </body>
 
