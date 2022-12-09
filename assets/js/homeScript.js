@@ -70,7 +70,7 @@ function textError() {
 
 // Function to move the user to the results page
 function resultsPage() {
-    window.location.href = 'results.html';
+    window.location.href = './assets/results.html'
 };
 
 // Event listeners
