@@ -118,19 +118,19 @@ function dexEntry(data) {
 // Save the searched Pokemon's info to localStorage to be recalled on home page search history
 function savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory) {
 
+    // Set variables to contain the current Pokemon's information to add to search history
     var pokeSprite = (data.sprites.front_default);
-    console.log(pokeSprite);
     var pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
-    console.log(pokeName);
     var dexNum = data.id;
-    console.log(dexNum);
 
+    // Checks for if the target array is empty. If so, create one with the new item. If not, add the new item.
     if (!spriteHistory) {
         spriteHistory = [pokeSprite];
     } else {
         spriteHistory.unshift(pokeSprite);
     }
 
+    // Checks for if the history of the target criteria is more than 5 items long. If so, remove the last item to prevent it from going over 5.
     if (spriteHistory.length > 5) {
         spriteHistory.pop();
     }
@@ -155,17 +155,17 @@ function savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory) {
         dexNumHistory.pop();
     }
 
+    // Set localStorage to contain the arrays with the information we want to display on the home page for the past 5 searches.
     localStorage.setItem("spriteHistory", JSON.stringify(spriteHistory));
     localStorage.setItem("pokeNameHistory", JSON.stringify(pokeNameHistory));
     localStorage.setItem("dexNumHistory", JSON.stringify(dexNumHistory));
 }
 
+// Function to load the localStorage so that we can modify it in the savePokeInfo function.
 function loadHistoryArrays(data) {
     var spriteHistory = JSON.parse(localStorage.getItem("spriteHistory"));
     var pokeNameHistory = JSON.parse(localStorage.getItem("pokeNameHistory"));
     var dexNumHistory = JSON.parse(localStorage.getItem("dexNumHistory"));
-
-    console.log(spriteHistory, typeof (spriteHistory), pokeNameHistory, typeof (pokeNameHistory), dexNumHistory, typeof (dexNumHistory));
 
     savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory);
 }
@@ -188,6 +188,3 @@ backBtn.addEventListener("click", homePage);
 loadCurrentPoke();
 pokeApi();
 pokeApiSpecies();
-
-
-console.log(latestSearch);
