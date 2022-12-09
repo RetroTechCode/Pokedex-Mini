@@ -1,8 +1,8 @@
 // Global variables
 var searchBtn = document.getElementById("searchBtn");
 var userInput = document.getElementById("userInput");
-var modalText = document.getElementById("modal-text")
-// Global variables
+var modalText = document.getElementById("modal-text");
+
 var latestSearch = loadSearchHistory();
 
 function pokeApi() {
@@ -49,7 +49,7 @@ function displayHistory(spriteHistory, pokeNameHistory, dexNumHistory) {
 
         spriteEl.setAttribute("src", spriteHistory[i]);
         nameEl.textContent = pokeNameHistory[i];
-        dexEl.textContent = dexNumHistory[i];
+        dexEl.textContent = "#" + dexNumHistory[i];
         }
 }
 
