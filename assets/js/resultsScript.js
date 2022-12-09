@@ -12,7 +12,7 @@ function pokeApi() {
         .then((response) => response.json())
         .then(function (data) {
             console.log(data);
-            // savePokeInfo(data);
+            loadHistoryArrays(data);
             getDexNum(data);
             getPokeName(data);
             pokeTypes(data);
@@ -116,44 +116,59 @@ function dexEntry(data) {
 // TODO: Type matchup display function
 
 // Save the searched Pokemon's info to localStorage to be recalled on home page search history
-// function savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory) {
-//     var pokeSprite = (data.sprites.front_default);
-//     var pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
-//     var dexNum = data.id;
+function savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory) {
 
-//     console.log(typeof(spriteHistory));
-//     if (spriteHistory = undefined) {
-//         spriteHistory = [pokeSprite];
-//     } else {
-//         spriteHistory.unshift(pokeSprite);
-//     }
+    var pokeSprite = (data.sprites.front_default);
+    console.log(pokeSprite);
+    var pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    console.log(pokeName);
+    var dexNum = data.id;
+    console.log(dexNum);
 
-//     if (pokeNameHistory = undefined) {
-//         pokeNameHistory = [pokeName];
-//     } else {
-//         pokeNameHistory.unshift(pokeName);
-//     }
+    if (!spriteHistory) {
+        spriteHistory = [pokeSprite];
+    } else {
+        spriteHistory.unshift(pokeSprite);
+    }
 
-//     if (dexNumHistory = undefined) {
-//         dexNumHistory = [dexNum];
-//     } else {
-//         dexNumHistory.unshift(dexNum);
-//     }
+    if (spriteHistory.length > 5) {
+        spriteHistory.pop();
+    }
 
-//     localStorage.setItem("spriteHistory", JSON.stringify(spriteHistory));
-//     localStorage.setItem("pokeNameHistory", JSON.stringify(pokeNameHistory));
-//     localStorage.setItem("dexNumHistory", JSON.stringify(dexNumHistory));
-// }
+    if (!pokeNameHistory) {
+        pokeNameHistory = [pokeName];
+    } else {
+        pokeNameHistory.unshift(pokeName);
+    }
 
-// function loadHistoryArrays(data) {
-//     var spriteHistory = JSON.parse(localStorage.getItem("spriteHistory"));
-//     var pokeNameHistory = JSON.parse(localStorage.getItem("pokeNameHistory"));
-//     var dexNumHistory = JSON.parse(localStorage.getItem("dexNumHistory"));
+    if (pokeNameHistory.length > 5) {
+        pokeNameHistory.pop();
+    }
 
-//     console.log(spriteHistory, typeof (spriteHistory), pokeNameHistory, typeof (pokeNameHistory), dexNumHistory, typeof (dexNumHistory));
+    if (!dexNumHistory) {
+        dexNumHistory = [dexNum];
+    } else {
+        dexNumHistory.unshift(dexNum);
+    }
 
-//     savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory);
-// }
+    if (dexNumHistory.length > 5) {
+        dexNumHistory.pop();
+    }
+
+    localStorage.setItem("spriteHistory", JSON.stringify(spriteHistory));
+    localStorage.setItem("pokeNameHistory", JSON.stringify(pokeNameHistory));
+    localStorage.setItem("dexNumHistory", JSON.stringify(dexNumHistory));
+}
+
+function loadHistoryArrays(data) {
+    var spriteHistory = JSON.parse(localStorage.getItem("spriteHistory"));
+    var pokeNameHistory = JSON.parse(localStorage.getItem("pokeNameHistory"));
+    var dexNumHistory = JSON.parse(localStorage.getItem("dexNumHistory"));
+
+    console.log(spriteHistory, typeof (spriteHistory), pokeNameHistory, typeof (pokeNameHistory), dexNumHistory, typeof (dexNumHistory));
+
+    savePokeInfo(data, spriteHistory, pokeNameHistory, dexNumHistory);
+}
 
 // Load the user's previous searches and return them as an array.
 function loadCurrentPoke() {
