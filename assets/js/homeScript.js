@@ -3,7 +3,7 @@ var searchBtn = document.getElementById("searchBtn");
 var userInput = document.getElementById("userInput");
 var modalText = document.getElementById("modal-text");
 
-var latestSearch = loadSearchHistory();
+var latestSearch = saveSearch();
 
 userInput.value = userInput.value.toLowerCase();
 
@@ -76,4 +76,3 @@ searchBtn.addEventListener("click", pokeApi);
 
 // Run these functions on page load
 loadSearchHistory();
-displayHistory();
