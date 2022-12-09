@@ -28,14 +28,14 @@
                 <img src="./assets/images/download.png">
             </div>
             <div class="search">
-                <input id="userInput" type="text" placeholder="Name or Dex #">
+                <input id="userInput" class="input" type="text" placeholder="Name or Dex #" oninput="this.value=this.value.toLowerCase()">
                 <button id="searchBtn">Search</button>
             </div>
              <!--Trigger / Open the Modal-->
              <div id="myModal" class="modal">
                 <div class="mdal-content">
                     <span class="close">&times;</span>
-                    <p id="modal-text"></p>
+                    <p id="modal-text">Error! Please double check your spelling or dex number.</p>
                 </div>
             </div>
             <ul id="dexmini-suggestions" style="visibility: hidden;"></ul>
