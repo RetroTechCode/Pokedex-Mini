@@ -80,6 +80,10 @@ body {
 .history ul {
   list-style: none;
 }
+ 
+input {
+  text-transform: capitalize;
+}
 
 @media screen and (max-width: 1024px) {
   body {

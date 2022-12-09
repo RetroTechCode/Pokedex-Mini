@@ -5,9 +5,10 @@ var modalText = document.getElementById("modal-text");
 
 var latestSearch = loadSearchHistory();
 
+userInput.value = userInput.value.toLowerCase();
+
 function pokeApi() {
     if (userInput.value.trim() === '') {
-        modalText.textContent = "Error! Please type a Pokemon name or Dex Number!"
         textError();
     } else {
         fetch("https://pokeapi.co/api/v2/pokemon/" + userInput.value)
@@ -18,7 +19,6 @@ function pokeApi() {
                 resultsPage();
             })
             .catch((err) => {
-                modalText.textContent = "Please check Pokemon spelling or Dex Number!";
                 textError();
                 console.log("Error! Please double check your spelling or dex number.")
             })
