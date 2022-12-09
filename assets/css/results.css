@@ -1,1 +1,148 @@
 /* Starting CSS */
+  
+  /* Colors ((Pallet?)) */
+:root {
+    --primary: rgb(18, 20, 23);
+    --secondary: pink;
+    --tertiary: rgba(49, 52, 61, 1);
+    --dark: rgba(28, 29, 33, 1);
+    --light: rgba(238, 238, 247, 1);
+  }
+
+#button {
+    padding-top: .5%;
+    line-height: 26px;
+    width: 35px;
+    height: 18px;
+    font-size: 16pt;
+    margin-top: 1px;
+    margin-left: 2px;
+    position:absolute;
+    top:0;
+    left:0;
+}
+  
+body {
+    display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+    margin: 2;
+    font-family: 'Press Start 2P', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: var(--primary);
+    background-color: var(--light);
+}
+
+.p {
+    border-radius: 2px;
+    border-color: blue;
+}
+
+
+.content {
+    align-content: center;
+}
+
+.flex-container {
+    display: flex;align-content: center;
+    display: flex;flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#top1a {
+    
+    margin: 1px;
+    background-color: white;
+    border: 3px solid blue;
+    height: auto;
+    width: auto;
+
+}
+#top1 {
+ 
+    margin: 5px;
+    background-color: white;
+    border: 5px solid red;
+    height: auto;
+    width: auto;
+    
+}
+
+#top2 {
+    display: flex;
+    flex-direction: row;
+    margin: 1px;
+    background-color: white;
+    border: 3px solid blue;
+    height: auto;
+    width: auto;
+    background-blend-mode: hard-light;
+}
+
+
+#top3 {
+    display: flex;
+    flex-direction: row;
+    margin: 1px;
+    background-color: white;
+    border: 3px solid blue;
+    height: auto;
+    width: auto;
+    background-blend-mode: hard-light;
+}
+
+#mid1 {
+    display: flex;
+    flex-direction: row;
+    margin: 1px;
+    background-color: white;
+    border: 3px solid blue;
+    height: auto;
+    width: auto;
+    background-blend-mode: hard-light;
+}
+
+#mid2 {
+    margin: 1px;
+    background-color: white;
+    border: 3px solid blue;
+    height: auto;
+    width: auto;
+    background-blend-mode: hard-light;
+}
+
+
+#bottom1 {
+    margin: 1px;
+    background-color: white;
+    border: 3px solid blue;
+    flex-wrap: wrap;
+    height: auto;
+    width: auto;
+    background-blend-mode: hard-light;
+}
+
+
+.hidden {
+    display: null;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    padding-top: 15%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 20%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding-top: 25%;
+  }
+}
