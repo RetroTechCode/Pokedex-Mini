@@ -59,8 +59,12 @@ body {
     border: 3px solid blue;
     height: auto;
     width: auto;
-
 }
+
+#top1a p {
+  margin: 4px;
+}
+
 #top1 {
  
     margin: 5px;
