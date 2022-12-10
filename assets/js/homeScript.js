@@ -75,6 +75,12 @@ function resultsPage() {
 
 // Event listeners
 searchBtn.addEventListener("click", pokeApi);
+userInput.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        searchBtn.click();
+    }
+});
 
 // Run these functions on page load
 loadSearchHistory();
