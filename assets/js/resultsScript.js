@@ -60,7 +60,7 @@ function pokeTypes(data) {
     if (data.types.length > 1) {
         var pokeType2 = data.types[1].type.name;
         var pokeType2Text = pokeType2.charAt(0).toUpperCase() + pokeType2.slice(1);
-        pokeTypeEl.textContent = pokeType1Text + " " + pokeType2Text;
+        pokeTypeEl.textContent = pokeType1Text + ", " + pokeType2Text;
     } else {
         pokeTypeEl.textContent = pokeType1Text;
     }

@@ -63,6 +63,10 @@ img {
   align-items: center;
 }
 
+.sprite {
+  text-align: center;
+}
+
 #top1a {
     
     margin: 1px;
@@ -75,13 +79,13 @@ img {
 
 #top1 {
  
-    margin: 5px;
     background-color: white;
     border: 5px solid red;
     height: auto;
     width: 100%;
-    padding: 3px;
+    padding-top: 8px;
     margin-top: 3px;
+    text-align: center;
 }
 
 #top2 {
@@ -122,11 +126,10 @@ img {
 }
 
 #mid2 {
-    margin: 1px;
     background-color: white;
     border: 3px solid blue;
     height: auto;
-    width: auto;
+    width: 100%;
     background-blend-mode: hard-light;
     padding: 5px;
     margin-top: 3px;
@@ -134,12 +137,11 @@ img {
 
 
 #bottom1 {
-    margin: 1px;
     background-color: white;
     border: 3px solid blue;
     flex-wrap: wrap;
     height: auto;
-    width: auto;
+    width: 100%;
     background-blend-mode: hard-light;
     padding: 5px;
     margin-top: 3px;
@@ -156,6 +158,10 @@ img {
 
 #pokeName {
   padding-left: 5px;
+}
+
+#pkmnGo {
+  font-size: 30px;
 }
 
 @media screen and (max-width: 1024px) {
