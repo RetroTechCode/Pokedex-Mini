@@ -36,6 +36,11 @@ body {
     background-color: var(--light);
 }
 
+img {
+  height: 200px;
+  width: 200px;
+}
+
 .p {
     border-radius: 2px;
     border-color: blue;
@@ -47,9 +52,19 @@ body {
 }
 
 .flex-container {
-    display: flex;align-content: center;
-    display: flex;flex-wrap: wrap;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
     flex-direction: column;
+}
+
+.sprites {
+  margin: auto;
+  align-items: center;
+}
+
+.sprite {
+  text-align: center;
 }
 
 #top1a {
@@ -59,17 +74,18 @@ body {
     border: 3px solid blue;
     height: auto;
     width: auto;
-
 }
+
+
 #top1 {
  
-    margin: 5px;
     background-color: white;
     border: 5px solid red;
     height: auto;
-    width: auto;
-    padding: 3px;
+    width: 100%;
+    padding-top: 8px;
     margin-top: 3px;
+    text-align: center;
 }
 
 #top2 {
@@ -100,24 +116,20 @@ body {
 }
 
 #mid1 {
-    display: flex;
-    flex-direction: row;
-    margin: 1px;
     background-color: white;
     border: 3px solid blue;
     height: auto;
-    width: auto;
+    width: 100%;
     background-blend-mode: hard-light;
     padding: 3px;
     margin-top: 3px;
 }
 
 #mid2 {
-    margin: 1px;
     background-color: white;
     border: 3px solid blue;
     height: auto;
-    width: auto;
+    width: 100%;
     background-blend-mode: hard-light;
     padding: 5px;
     margin-top: 3px;
@@ -125,12 +137,11 @@ body {
 
 
 #bottom1 {
-    margin: 1px;
     background-color: white;
     border: 3px solid blue;
     flex-wrap: wrap;
     height: auto;
-    width: auto;
+    width: 100%;
     background-blend-mode: hard-light;
     padding: 5px;
     margin-top: 3px;
@@ -147,6 +158,10 @@ body {
 
 #pokeName {
   padding-left: 5px;
+}
+
+#pkmnGo {
+  font-size: 30px;
 }
 
 @media screen and (max-width: 1024px) {
