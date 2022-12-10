@@ -36,6 +36,11 @@ body {
     background-color: var(--light);
 }
 
+img {
+  height: 200px;
+  width: 200px;
+}
+
 .p {
     border-radius: 2px;
     border-color: blue;
@@ -47,9 +52,15 @@ body {
 }
 
 .flex-container {
-    display: flex;align-content: center;
-    display: flex;flex-wrap: wrap;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
     flex-direction: column;
+}
+
+.sprites {
+  margin: auto;
+  align-items: center;
 }
 
 #top1a {
@@ -61,9 +72,6 @@ body {
     width: auto;
 }
 
-#top1a p {
-  margin: 4px;
-}
 
 #top1 {
  
@@ -71,7 +79,7 @@ body {
     background-color: white;
     border: 5px solid red;
     height: auto;
-    width: auto;
+    width: 100%;
     padding: 3px;
     margin-top: 3px;
 }
@@ -104,13 +112,10 @@ body {
 }
 
 #mid1 {
-    display: flex;
-    flex-direction: row;
-    margin: 1px;
     background-color: white;
     border: 3px solid blue;
     height: auto;
-    width: auto;
+    width: 100%;
     background-blend-mode: hard-light;
     padding: 3px;
     margin-top: 3px;

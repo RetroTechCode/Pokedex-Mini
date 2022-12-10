@@ -37,7 +37,7 @@ function getDexNum(data) {
     var dexNumEl = document.getElementById("dexNum");
     var dexNum = data.id;
 
-    dexNumEl.textContent = "#" + dexNum;
+    dexNumEl.textContent = dexNum;
     poGoCheck(dexNum);
 }
 

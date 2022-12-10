@@ -25,35 +25,48 @@
             <div id="content">
                 <div class="flex-container">
                     <div id="top1">
-                        <p id="name">Pokemon name: </p><p id="pokeName"></p>
-                    <div id="top1a">
-                        <p>Is this Pokemon in PokemonGO?</p><p id="pkmnGo"></p>
+                        <h3 id="pokeName"></h3>
                     </div>
-                    <div id="top2">
-                        <P>Dex Number:</p><p id="dexNum"></p>
-                    </div>
-                    <div id="top3">
-                    <p>Pokemon Type: </p><p id="pokeType"></p>
-                    </div>
-                    <div id="mid1">
-                        <p>Regular sprite:</p><img id="regSprite"></img>
-                        <p>Shiny Sprite:</p><img id="shinySprite"></img>
-                    </div>
-                    <div id="mid2">
-                        <p>Pokemon Base Stats:</p><p id="pokeStats">
-                            <div>HP: <span id="stat1"></span></div>
-                            <div>Attack: <span id="stat2"></span></div>
-                            <div>Defense: <span id="stat3"></span></div>
-                            <div>Sp. Atk: <span id="stat4"></span></div>
-                            <div>Sp. Def: <span id="stat5"></span></div>
-                            <div>Speed: <span id="stat6"></span></div>
-                        </p>
-                    </div>
-                    <div id="bottom1">
-                        <p>Dex Entry Info:</p><p id="dexEntry"></p>
+                    <div class="row sprites" id="mid1">
+                        <div class="col-6">
+                            <div class="row" id="top1a">
+                                <p>Available in PokemonGO?</p><span id="pkmnGo"></span>
+                            </div>
+                            <div class="row" id="top2">
+                                <p>National Dex #</p>
+                                <p id="dexNum"> </p>
+                            </div>
+                            <div class="row" id="top3">
+                                <p>Pokemon Type:</p><span id="pokeType"></span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <p>Regular Sprite</p>
+                            <img id="regSprite"></img>
+                        </div>
+                        <div class="col-3">
+                            <p>Shiny Sprite</p>
+                            <img id="shinySprite"></img>
+                        </div>
                     </div>
                 </div>
+                <div id="mid2">
+                    <p>Base Stats</p>
+                    <p id="pokeStats">
+                    <div>HP: <span id="stat1"></span></div>
+                    <div>Attack: <span id="stat2"></span></div>
+                    <div>Defense: <span id="stat3"></span></div>
+                    <div>Sp. Atk: <span id="stat4"></span></div>
+                    <div>Sp. Def: <span id="stat5"></span></div>
+                    <div>Speed: <span id="stat6"></span></div>
+                    </p>
+                </div>
+                <div id="bottom1">
+                    <p>Dex Entry</p>
+                    <p id="dexEntry"></p>
+                </div>
             </div>
+        </div>
         </div>
     </main>
 </body>
