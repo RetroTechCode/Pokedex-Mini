@@ -39,6 +39,7 @@ body {
 img {
   height: 200px;
   width: 200px;
+  margin: 0 -50px;
 }
 
 .p {
@@ -69,7 +70,7 @@ img {
 
 #top1a {
     
-    margin: 1px;
+    margin: 5px 1px;
     background-color: white;
     border: 3px solid blue;
     height: auto;
@@ -84,35 +85,33 @@ img {
     height: auto;
     width: 100%;
     padding-top: 8px;
-    margin-top: 3px;
+    margin: 5px 1px;
     text-align: center;
 }
 
 #top2 {
     display: flex;
     flex-direction: row;
-    margin: 1px;
+    margin: 5px 1px;
     background-color: white;
     border: 3px solid blue;
     height: auto;
     width: auto;
     background-blend-mode: hard-light;
     padding: 3px;
-    margin-top: 3px;
-}
+ }
 
 
 #top3 {
     display: flex;
     flex-direction: row;
-    margin: 1px;
+    margin: 5px 1px;
     background-color: white;
     border: 3px solid blue;
     height: auto;
     width: auto;
     background-blend-mode: hard-light;
     padding: 3px;
-    margin-top: 3px;
 }
 
 #mid1 {
@@ -164,20 +163,47 @@ img {
   font-size: 30px;
 }
 
+@media screen and (max-width: 1200px) {
+  body {
+    padding-top: 5%;
+  }
+  img {
+    width: 164px;
+    height: 164px;
+    margin: 0 -50px;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   body {
-    padding-top: 15%;
+    padding-top: 10%;
+  }
+  img {
+    margin: 0 -50px;
+    height: 120px;
+    width: 120px;
   }
 }
 
 @media screen and (max-width: 768px) {
   body {
-    padding-top: 20%;
+    padding-top: 10%;
+  }
+  .sprite {
+    flex-direction: column;
+    margin: 10px 0 0px -50px;
+  }
+  .sprites {
+    flex-direction: column;
+    
+  }
+  img {
+    margin: auto;
   }
 }
 
 @media screen and (max-width: 480px) {
   body {
-    padding-top: 25%;
+    padding-top: 15%;
   }
 }
