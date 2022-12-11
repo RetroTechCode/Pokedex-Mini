@@ -18,7 +18,6 @@ function pokeApi() {
             regSprite(data);
             shinySprite(data);
             pokeStats(data);
-            console.log(data);
         })
 };
 
@@ -28,7 +27,6 @@ function pokeApiSpecies() {
         .then((response) => response.json())
         .then(function (data) {
             dexEntry(data);
-            console.log(data);
         })
 }
 
