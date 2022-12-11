@@ -27,6 +27,7 @@ function pokeApiSpecies() {
         .then((response) => response.json())
         .then(function (data) {
             dexEntry(data);
+            console.log(data);
         })
 }
 
@@ -100,38 +101,17 @@ function dexEntry(data) {
     var dexEntryEl = document.getElementById("dexEntry");
 
     // Making sure to display the ENGLISH Pokedex entry given the dex number.
-    if (data.id >= 1 && data.id <= 493 || data.id >= 899) {
-        var dexEntry = data.flavor_text_entries[0].flavor_text;
-        var dexEntryFormat = dexEntry.replace("\n" && "\f", " ");
+    for (var i = 0; i < 30; i++) {
+        if (data.flavor_text_entries[i].language.name === "en") {
+            var dexEntry = data.flavor_text_entries[i].flavor_text;
+            var dexEntryFormat = dexEntry.replace("\n" && "\f", " ");
 
-        dexEntryEl.textContent = dexEntryFormat;
-    } else if (data.id >= 494 && data.id <= 649) {
-        var dexEntry = data.flavor_text_entries[1].flavor_text;
-        var dexEntryFormat = dexEntry.replace("\n" && "\f", " ");
-
-        dexEntryEl.textContent = dexEntryFormat;
-    } else if (data.id >= 650 && data.id <= 721) {
-        var dexEntry = data.flavor_text_entries[6].flavor_text;
-        var dexEntryFormat = dexEntry.replace("\n" && "\f", " ");
-
-        dexEntryEl.textContent = dexEntryFormat;
-    } else if (data.id >= 722 && data.id <= 748 || data.id >= 751 && data.id <= 809) {
-        var dexEntry = data.flavor_text_entries[7].flavor_text;
-        var dexEntryFormat = dexEntry.replace("\n" && "\f", " ");
-
-        dexEntryEl.textContent = dexEntryFormat;
-    } else if (data.id >= 749 && data.id <= 750) {
-        var dexEntry = data.flavor_text_entries[8].flavor_text;
-        var dexEntryFormat = dexEntry.replace("\n" && "\f", " ");
-
-        dexEntryEl.textContent = dexEntryFormat;
-    } else if (data.id >= 810 && data.id <= 898) {
-        var dexEntry = data.flavor_text_entries[17].flavor_text;
-        var dexEntryFormat = dexEntry.replace("\n" && "\f", " ");
-
-        dexEntryEl.textContent = dexEntryFormat;
+            dexEntryEl.textContent = dexEntryFormat;
+            return;
+        }
     }
 }
+
 
 // TODO: Stats display function
 function pokeStats(data) {
