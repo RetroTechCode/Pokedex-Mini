@@ -61,6 +61,7 @@ function displayHistory(spriteHistory, pokeNameHistory, dexNumHistory) {
 function textError() {
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
+    var bodyEl = document.getElementById("body");
 
     modal.style.display = "block";
 
@@ -68,6 +69,11 @@ function textError() {
         modal.style.display = "none";
     }
 
+    window.onclick = function(event) {
+        if (event.target == body) {
+            modal.style.display = "none";
+        }
+    }
 }
 
 // Function to move the user to the results page
