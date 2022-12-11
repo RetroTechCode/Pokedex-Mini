@@ -7,23 +7,25 @@ var latestSearch = saveSearch();
 
 userInput.value = userInput.value.toLowerCase();
 
-function pokeApi() {
-    if (userInput.value.trim() === '') {
+function search() {
+    if (userInput.value == "") {
         textError();
     } else {
-        fetch("https://pokeapi.co/api/v2/pokemon/" + userInput.value)
-            .then((response) => response.json())
-            .then(function (data) {
-                console.log(data);
-                saveSearch();
-                resultsPage();
-            })
-            .catch((err) => {
-                textError();
-                console.log("Error! Please double check your spelling or dex number.")
-            })
-    };
+        pokeApi();
+    }
 }
+
+function pokeApi() {
+    fetch("https://pokeapi.co/api/v2/pokemon/" + userInput.value.trim())
+        .then((response) => response.json())
+        .then(function (data) {
+            saveSearch();
+            resultsPage();
+        })
+        .catch((err) => {
+            textError();
+        })
+};
 
 // Add the user's latest search to localStorage
 function saveSearch() {
@@ -60,13 +62,13 @@ function textError() {
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
 
-    searchBtn.onclick = function () {
-        modal.style.display = "block";
-    }
+    modal.style.display = "block";
+
     span.onclick = function () {
         modal.style.display = "none";
     }
-};
+
+}
 
 // Function to move the user to the results page
 function resultsPage() {
@@ -74,11 +76,10 @@ function resultsPage() {
 };
 
 // Event listeners
-searchBtn.addEventListener("click", pokeApi);
-userInput.addEventListener("keyup", function(event) {
+searchBtn.addEventListener("click", search);
+document.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
-        event.preventDefault();
-        searchBtn.click();
+        search();
     }
 });
 
