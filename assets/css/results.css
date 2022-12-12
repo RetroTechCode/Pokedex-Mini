@@ -45,7 +45,6 @@ img {
     border-color: var(--blue);
 }
 
-
 .content {
     align-content: center;
 }
@@ -69,6 +68,15 @@ img {
   color: rgb(255, 61, 61);
   margin: 0;
   padding-left: 0.5%;
+}
+
+.nameContainer {
+  border: 5px solid red;
+  height: auto;
+  width: 100%;
+  padding-top: 8px;
+  margin: 5px 1px;
+  text-align: center;
 }
 
 .spritesContainer {
@@ -114,16 +122,7 @@ img {
   width: auto;
 }
 
-#top1 {
-  border: 5px solid red;
-  height: auto;
-  width: 100%;
-  padding-top: 8px;
-  margin: 5px 1px;
-  text-align: center;
-}
-
-#mid2 {
+.statContainer {
     background-color: white;
     border: 3px solid var(--blue);
     height: auto;
@@ -134,7 +133,7 @@ img {
 }
 
 
-#bottom1 {
+.dexEntry {
     background-color: white;
     border: 3px solid var(--blue);
     flex-wrap: wrap;
