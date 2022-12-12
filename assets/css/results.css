@@ -198,6 +198,15 @@ img {
     height: 200px;
     width: 200px;
   }
+  .dexNumContainer {
+    margin: 3px -80px;
+  }
+  .typesContainer {
+    margin: 3px -80px;
+  }
+  .poGoContainer {
+    margin: 3px -80px;
+  }
 }
 
 @media screen and (max-width: 480px) {
