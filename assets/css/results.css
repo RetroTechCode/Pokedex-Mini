@@ -3,10 +3,8 @@
   /* Colors ((Pallet?)) */
 :root {
     --primary: rgb(18, 20, 23);
-    --secondary: pink;
-    --tertiary: rgba(49, 52, 61, 1);
-    --dark: rgba(28, 29, 33, 1);
     --light: rgba(238, 238, 247, 1);
+    --blue: rgb(13, 0, 255);
   }
 
 #button {
@@ -44,9 +42,8 @@ img {
 
 .p {
     border-radius: 2px;
-    border-color: blue;
+    border-color: var(--blue);
 }
-
 
 .content {
     align-content: center;
@@ -59,74 +56,75 @@ img {
     flex-direction: column;
 }
 
-.sprites {
-  margin: auto;
-  align-items: center;
-}
-
 .sprite {
   text-align: center;
 }
 
-#top1a {
-    
-    margin: 5px 1px;
-    background-color: white;
-    border: 3px solid blue;
-    height: auto;
-    width: auto;
+.subtitle {
+  margin: 0 0 1% -.5%; 
 }
 
-
-#top1 {
- 
-    background-color: white;
-    border: 5px solid red;
-    height: auto;
-    width: 100%;
-    padding-top: 8px;
-    margin: 5px 1px;
-    text-align: center;
+.desc {
+  color: rgb(255, 61, 61);
+  margin: 0;
+  padding-left: 0.5%;
 }
 
-#top2 {
-    display: flex;
-    flex-direction: row;
-    margin: 5px 1px;
-    background-color: white;
-    border: 3px solid blue;
-    height: auto;
-    width: auto;
-    background-blend-mode: hard-light;
-    padding: 3px;
- }
-
-
-#top3 {
-    display: flex;
-    flex-direction: row;
-    margin: 5px 1px;
-    background-color: white;
-    border: 3px solid blue;
-    height: auto;
-    width: auto;
-    background-blend-mode: hard-light;
-    padding: 3px;
+.nameContainer {
+  border: 5px solid red;
+  height: auto;
+  width: 100%;
+  padding-top: 8px;
+  margin: 5px 1px;
+  text-align: center;
 }
 
-#mid1 {
-    background-color: white;
-    border: 3px solid blue;
-    height: auto;
-    width: 100%;
-    background-blend-mode: hard-light;
-    padding: 3px;
-    margin-top: 3px;
+.spritesContainer {
+  background-color: white;
+  border: 3px solid var(--blue);
+  height: auto;
+  width: 100%;
+  background-blend-mode: hard-light;
+  padding: 3px;
+  margin: auto;
+  align-items: center;
 }
 
-#mid2 {
+.dexNumContainer {
+  display: flex;
+  flex-direction: row;
+  margin-left: -8px;
+  border: 3px solid var(--blue);
+  height: auto;
+  width: auto;
+  background-blend-mode: hard-light;
+  padding: 3px;
+}
+
+.typesContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4px;
+  margin-left: -8px;
+  background-color: white;
+  border: 3px solid var(--blue);
+  height: auto;
+  width: auto;
+  background-blend-mode: hard-light;
+  padding: 3px;
+}
+
+.poGoContainer {
+  border: 3px solid var(--blue);
+  margin-top: 4px;
+  margin-left: -8px;
+  height: auto;
+  width: auto;
+}
+
+.statContainer {
     background-color: white;
-    border: 3px solid blue;
+    border: 3px solid var(--blue);
     height: auto;
     width: 100%;
     background-blend-mode: hard-light;
@@ -135,9 +133,9 @@ img {
 }
 
 
-#bottom1 {
+.dexEntry {
     background-color: white;
-    border: 3px solid blue;
+    border: 3px solid var(--blue);
     flex-wrap: wrap;
     height: auto;
     width: 100%;
